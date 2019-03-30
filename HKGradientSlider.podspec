@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
   s.version          = '1.0.0'
   s.summary          = 'Gradient Layer'
 
-  s.description      = ""
+  s.description      = "Gradient Layer Slider for custom use"
 
   s.homepage         = 'https://github.com/hardikdevios/HKGradientSlider'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
