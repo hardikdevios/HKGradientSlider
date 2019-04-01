@@ -10,9 +10,9 @@ import UIKit
 
 @IBDesignable public class HKGradientSlider: UIControl {
     
-    static var defaultThickness:CGFloat = 2.0
-    static var defaultThumbSizeWidth:CGFloat = 30.0
-    static var defaultThumbSizeHeight:CGFloat = 45.0
+    public static var defaultThickness:CGFloat = 2.0
+    public static var defaultThumbSizeWidth:CGFloat = 30.0
+    public static var defaultThumbSizeHeight:CGFloat = 45.0
 
     
     @IBInspectable public var value: CGFloat {
@@ -25,20 +25,20 @@ import UIKit
         updateThumbPosition(animated: animated)
     }
     
-    @IBInspectable var minimumValue: CGFloat = 0.0 // default 0.0. the current value may change if outside new min value
-    @IBInspectable var maximumValue: CGFloat = 1.0 // default 1.0. the current value may change if outside new max value
+    @IBInspectable public var minimumValue: CGFloat = 0.0 // default 0.0. the current value may change if outside new min value
+    @IBInspectable public var maximumValue: CGFloat = 1.0 // default 1.0. the current value may change if outside new max value
     var continuous: Bool = true // if set, value change events are generated any time the value changes due to dragging. default = YES
     
-    var actionBlock:(HKGradientSlider,CGFloat, Bool)->() = {slider,newValue,finished in }
+    public var actionBlock:(HKGradientSlider,CGFloat, Bool)->() = {slider,newValue,finished in }
     
-    @IBInspectable var thickness:CGFloat = defaultThickness {
+    @IBInspectable public var thickness:CGFloat = defaultThickness {
         didSet{
             _trackLayer.cornerRadius = thickness / 2.0
             self.layer.setNeedsLayout()
         }
     }
 
-    @IBInspectable var thumbIcon:UIImage? = nil {
+    @IBInspectable public var thumbIcon:UIImage? = nil {
         didSet{
             _thumbIconLayer.contents = thumbIcon?.cgImage
         }
