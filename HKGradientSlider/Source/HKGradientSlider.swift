@@ -11,8 +11,8 @@ import UIKit
 @IBDesignable public class HKGradientSlider: UIControl {
     
     public static var defaultThickness:CGFloat = 2.0
-    public static var defaultThumbSizeWidth:CGFloat = 30.0
-    public static var defaultThumbSizeHeight:CGFloat = 45.0
+    public static var defaultThumbSizeWidth:CGFloat = 18.0
+    public static var defaultThumbSizeHeight:CGFloat = 27.0
 
     
     @IBInspectable public var value: CGFloat {
@@ -199,7 +199,9 @@ import UIKit
         let left = _backgroundLayer.position.x - trackWidth/2.0
         CATransaction.begin()
         CATransaction.setValue(true, forKey: kCATransactionDisableActions)
-        _thumbLayer.position = CGPoint(x: left + (trackWidth * perc), y: halfHeight)
+        _thumbLayer.bounds = CGRect(x: 0, y: 0, width: HKGradientSlider.defaultThumbSizeWidth, height: HKGradientSlider.defaultThumbSizeHeight)
+        _thumbLayer.position = CGPoint(x: left + (trackWidth * perc), y: halfHeight + thickness/2.5)
+
         _trackLayer.bounds = CGRect(x: 0, y: 0, width: left + (trackWidth * perc) , height: thickness)
         _trackLayer.position = CGPoint(x: _trackLayer.bounds.width / 2,y: halfHeight)
         CATransaction.commit()
