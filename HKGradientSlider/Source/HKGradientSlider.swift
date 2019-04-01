@@ -8,19 +8,19 @@
 
 import UIKit
 
-@IBDesignable class HKGradientSlider: UIControl {
+@IBDesignable public class HKGradientSlider: UIControl {
     
     static var defaultThickness:CGFloat = 2.0
     static var defaultThumbSizeWidth:CGFloat = 30.0
     static var defaultThumbSizeHeight:CGFloat = 45.0
 
     
-    @IBInspectable var value: CGFloat {
+    @IBInspectable public var value: CGFloat {
         get{ return _value }
         set{ setValue(newValue, animated:true) }
     }
     
-    func setValue(_ value:CGFloat, animated:Bool = true) {
+    public func setValue(_ value:CGFloat, animated:Bool = true) {
         _value = max(min(value,self.maximumValue),self.minimumValue)
         updateThumbPosition(animated: animated)
     }
@@ -103,7 +103,7 @@ import UIKit
     }
     
     
-    override func encode(with aCoder: NSCoder) {
+    override public func encode(with aCoder: NSCoder) {
         super.encode(with: aCoder)
         aCoder.encode(value, forKey: "value")
         aCoder.encode(minimumValue, forKey: "minimumValue")
@@ -122,13 +122,13 @@ import UIKit
     }
     
     //MARK: - Layout
-    override var intrinsicContentSize:CGSize {
+    override public var intrinsicContentSize:CGSize {
         return CGSize(width: UIView.noIntrinsicMetric, height: HKGradientSlider.defaultThumbSizeHeight)
     }
     
 
     
-    override func layoutSublayers(of layer: CALayer) {
+    override public func layoutSublayers(of layer: CALayer) {
         
         if layer != self.layer {return}
         
@@ -150,7 +150,7 @@ import UIKit
 
     //MARK: - Touch Tracking
     
-    override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+    override public func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
         super.beginTracking(touch, with: event)
         let pt = touch.location(in: self)
         
@@ -165,7 +165,7 @@ import UIKit
         return false
     }
     
-    override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+    override public func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
         super.continueTracking(touch, with: event)
         let pt = touch.location(in: self)
         let newValue = valueForLocation(point: pt)
@@ -177,7 +177,7 @@ import UIKit
         return true
     }
     
-    override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
+    override public func endTracking(_ touch: UITouch?, with event: UIEvent?) {
         super.endTracking(touch, with: event)
         if let pt = touch?.location(in: self){
             let newValue = valueForLocation(point: pt)
