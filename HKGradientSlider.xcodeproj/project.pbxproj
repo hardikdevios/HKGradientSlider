@@ -13,6 +13,7 @@
 		B1579215224F5627009EDEB8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1579214224F5627009EDEB8 /* Assets.xcassets */; };
 		B1579218224F5627009EDEB8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1579216224F5627009EDEB8 /* LaunchScreen.storyboard */; };
 		B1579221224F571B009EDEB8 /* HKGradientSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1579220224F571B009EDEB8 /* HKGradientSlider.swift */; };
+		B1CABB70225210930050875B /* HKGradientSlider.podspec in Resources */ = {isa = PBXBuildFile; fileRef = B1CABB6F225210930050875B /* HKGradientSlider.podspec */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		B1579217224F5627009EDEB8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B1579219224F5627009EDEB8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B1579220224F571B009EDEB8 /* HKGradientSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HKGradientSlider.swift; sourceTree = "<group>"; };
+		B1CABB6F225210930050875B /* HKGradientSlider.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HKGradientSlider.podspec; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +42,7 @@
 		B1579201224F5625009EDEB8 = {
 			isa = PBXGroup;
 			children = (
+				B1CABB6F225210930050875B /* HKGradientSlider.podspec */,
 				B157920C224F5625009EDEB8 /* HKGradientSlider */,
 				B157920B224F5625009EDEB8 /* Products */,
 			);
@@ -133,6 +136,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1CABB70225210930050875B /* HKGradientSlider.podspec in Resources */,
 				B1579218224F5627009EDEB8 /* LaunchScreen.storyboard in Resources */,
 				B1579215224F5627009EDEB8 /* Assets.xcassets in Resources */,
 				B1579213224F5625009EDEB8 /* Main.storyboard in Resources */,
