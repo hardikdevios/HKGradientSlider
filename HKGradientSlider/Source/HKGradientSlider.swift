@@ -27,8 +27,8 @@ import UIKit
     
     @IBInspectable public var minimumValue: CGFloat = 0.0 // default 0.0. the current value may change if outside new min value
     @IBInspectable public var maximumValue: CGFloat = 1.0 // default 1.0. the current value may change if outside new max value
-    var continuous: Bool = true // if set, value change events are generated any time the value changes due to dragging. default = YES
-    
+    public var continuous: Bool = true // if set, value change events are generated any time the value changes due to dragging. default = YES
+    public var isLocked:Bool = false
     public var actionBlock:(HKGradientSlider,CGFloat, Bool)->() = {slider,newValue,finished in }
     
     @IBInspectable public var thickness:CGFloat = defaultThickness {
@@ -43,6 +43,8 @@ import UIKit
             _thumbIconLayer.contents = thumbIcon?.cgImage
         }
     }
+    
+    
 
     //MARK: - Private Properties
     private var _value:CGFloat = 0.0 // default 0.0. this value will be pinned to min/max
@@ -169,6 +171,9 @@ import UIKit
         super.continueTracking(touch, with: event)
         let pt = touch.location(in: self)
         let newValue = valueForLocation(point: pt)
+        if isLocked {
+            return false
+        }
         setValue(newValue, animated: false)
         if(continuous){
             sendActions(for: UIControl.Event.valueChanged)
@@ -199,7 +204,7 @@ import UIKit
         let left = _backgroundLayer.position.x - trackWidth/2.0
         CATransaction.begin()
         CATransaction.setValue(true, forKey: kCATransactionDisableActions)
-        _thumbLayer.bounds = CGRect(x: 0, y: 0, width: HKGradientSlider.defaultThumbSizeWidth, height: HKGradientSlider.defaultThumbSizeHeight)
+        _thumbLayer.bounds = CGRect(x: -9, y: 0, width: HKGradientSlider.defaultThumbSizeWidth, height: HKGradientSlider.defaultThumbSizeHeight)
         _thumbLayer.position = CGPoint(x: left + (trackWidth * perc), y: halfHeight + thickness/2.5)
 
         _trackLayer.bounds = CGRect(x: 0, y: 0, width: left + (trackWidth * perc) , height: thickness)
@@ -211,7 +216,7 @@ import UIKit
     private func valueForLocation(point:CGPoint)->CGFloat {
         
         
-        let left = self.bounds.origin.x
+        let left = self.bounds.origin.x + 9
         let w = self.bounds.width
       
         let diff = CGFloat(self.maximumValue - self.minimumValue)

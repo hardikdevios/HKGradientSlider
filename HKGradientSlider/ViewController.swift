@@ -14,8 +14,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         slider.thickness = 15
-        HKGradientSlider.defaultThumbSizeHeight = 45
-        HKGradientSlider.defaultThumbSizeWidth = 30
+        HKGradientSlider.defaultThumbSizeHeight = 36
+        HKGradientSlider.defaultThumbSizeWidth = 24
 
         // Do any additional setup after loading the view.
     }
