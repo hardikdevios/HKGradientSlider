@@ -13,7 +13,7 @@ import UIKit
     public static var defaultThickness:CGFloat = 2.0
     public static var defaultThumbSizeWidth:CGFloat = 18.0
     public static var defaultThumbSizeHeight:CGFloat = 27.0
-
+    public var padding:CGFloat = 30
     
     @IBInspectable public var value: CGFloat {
         get{ return _value }
@@ -134,16 +134,15 @@ import UIKit
         
         if layer != self.layer {return}
         
-        let w = self.bounds.width
+        let w = self.bounds.width - padding/2
         let h = self.bounds.height
-        let left:CGFloat = 2.0
         
         _backgroundLayer.cornerRadius = thickness/2
-        _backgroundLayer.bounds = CGRect(x: 0, y: 0, width: w, height: thickness)
-        _backgroundLayer.position = CGPoint(x: w/2.0 + left,y: h/2)
+        _backgroundLayer.bounds = CGRect(x: padding/2, y: 0, width: w, height: thickness)
+        _backgroundLayer.position = CGPoint(x: w/2.0 + padding/2,y: h/2)
         let halfSize = HKGradientSlider.defaultThumbSizeHeight/2.0 - 10
         _thumbIconLayer.position = CGPoint(x: halfSize, y: halfSize)
-        _thumbIconLayer.bounds = CGRect(x: 0, y: 0, width: HKGradientSlider.defaultThumbSizeWidth, height: HKGradientSlider.defaultThumbSizeHeight)
+        _thumbIconLayer.bounds = CGRect(x: -(thickness/2), y: 0, width: HKGradientSlider.defaultThumbSizeWidth, height: HKGradientSlider.defaultThumbSizeHeight)
 
         
         updateThumbPosition(animated: false)
@@ -157,7 +156,7 @@ import UIKit
         let pt = touch.location(in: self)
         
         let center = _thumbLayer.position
-        let diameter = max(HKGradientSlider.defaultThumbSizeWidth,44.0)
+        let diameter = max(HKGradientSlider.defaultThumbSizeWidth,90.0)
         let r = CGRect(x: center.x - diameter/2.0, y: center.y - diameter/2.0, width: diameter, height: diameter)
         print(r.contains(pt))
         if r.contains(pt){
@@ -171,7 +170,7 @@ import UIKit
         super.continueTracking(touch, with: event)
         let pt = touch.location(in: self)
         let newValue = valueForLocation(point: pt)
-        if isLocked {
+        if isLocked && newValue > value{
             return false
         }
         setValue(newValue, animated: false)
@@ -204,7 +203,7 @@ import UIKit
         let left = _backgroundLayer.position.x - trackWidth/2.0
         CATransaction.begin()
         CATransaction.setValue(true, forKey: kCATransactionDisableActions)
-        _thumbLayer.bounds = CGRect(x: -9, y: 0, width: HKGradientSlider.defaultThumbSizeWidth, height: HKGradientSlider.defaultThumbSizeHeight)
+        _thumbLayer.bounds = CGRect(x:5, y: 0, width: HKGradientSlider.defaultThumbSizeWidth , height: HKGradientSlider.defaultThumbSizeHeight)
         _thumbLayer.position = CGPoint(x: left + (trackWidth * perc), y: halfHeight + thickness/2.5)
 
         _trackLayer.bounds = CGRect(x: 0, y: 0, width: left + (trackWidth * perc) , height: thickness)
@@ -216,7 +215,7 @@ import UIKit
     private func valueForLocation(point:CGPoint)->CGFloat {
         
         
-        let left = self.bounds.origin.x + 9
+        let left = self.bounds.origin.x
         let w = self.bounds.width
       
         let diff = CGFloat(self.maximumValue - self.minimumValue)
